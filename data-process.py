@@ -5,13 +5,14 @@ import matplotlib.pyplot as plt
 data = np.loadtxt("lake-data-raw.csv", float, skiprows=1, delimiter=",")
 x_vals, y_vals, z_vals = data[:, 0], data[:, 1], data[:, 2]
 
-#Filtered data lists
+# Filtered data lists
 x_filtered, y_filtered, z_filtered = [], [], [] 
 
-#Sets to make sure unique values
+# Sets to make sure unique values
 unique_x = set()
 unique_y = set()
 
+# 
 for i in range(len(x_vals)):
     curr_x, curr_y = x_vals[i], y_vals[i]
 
@@ -34,13 +35,14 @@ for i in range(len(x_vals)):
 max_x = max(x_vals)
 max_y = max(y_vals)
 
+# Scaling points to be usable in Blender
 scale_mult = 10000
 scale_sub = None
 scale_add = None
-x_filtered = [scale_mult*(max_x - x) for x in x_filtered]
-y_filtered = [scale_mult*(max_y - y) for y in y_filtered]
-x_vals = [scale_mult*(max_x - x) for x in x_vals]
-y_vals = [scale_mult*(max_y - y) for y in y_vals]
+x_filtered = [scale_mult*(x - max_x) for x in x_filtered]
+y_filtered = [scale_mult*(y - max_y) for y in y_filtered]
+x_vals = [scale_mult*(x - max_x) for x in x_vals]
+y_vals = [scale_mult*(y - max_y) for y in y_vals]
 
 plt.plot(x_filtered, y_filtered, label="filtered")
 plt.plot(x_vals, y_vals, label="unfiltered")
