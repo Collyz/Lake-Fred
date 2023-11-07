@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 # Retrieving data from the file
 data = np.loadtxt("lake-data-raw.csv", float, skiprows=1, delimiter=",")
-x_vals, y_vals, z_vals = data[:, 0], data[:, 1], data[:, 2]
+x_vals, y_vals, z_vals = data[:, 0], data[:, 1], -data[:, 2]
 
 # Filtered data lists
 x_filtered, y_filtered, z_filtered = [], [], [] 
@@ -12,17 +12,25 @@ x_filtered, y_filtered, z_filtered = [], [], []
 unique_x = set()
 unique_y = set()
 
-# Removing values that hold insignificant x and y changes
+# Removing values that hold insignificant x and y values
 for i in range(len(x_vals)):
-    curr_x, curr_y = x_vals[i], y_vals[i]
+    curr_x, curr_y, curr_z = x_vals[i], y_vals[i], z_vals[i]
 
     # Check if the current x is unique
-    if curr_x not in unique_x:
+    if curr_x not in unique_x and curr_z == 0:
+        x_filtered.append(x_vals[i])
+        y_filtered.append(y_vals[i])
+        z_filtered.append(z_vals[i])
+    elif curr_z < 0:
         x_filtered.append(x_vals[i])
         y_filtered.append(y_vals[i])
         z_filtered.append(z_vals[i])
     # Check if the current y is unique
-    if curr_y not in unique_y:
+    if curr_y not in unique_y and curr_z == 0:
+        x_filtered.append(x_vals[i])
+        y_filtered.append(y_vals[i])
+        z_filtered.append(z_vals[i])
+    elif curr_z < 0:
         x_filtered.append(x_vals[i])
         y_filtered.append(y_vals[i])
         z_filtered.append(z_vals[i])
