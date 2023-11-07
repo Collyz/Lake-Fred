@@ -12,7 +12,7 @@ x_filtered, y_filtered, z_filtered = [], [], []
 unique_x = set()
 unique_y = set()
 
-# 
+# Removing values that hold insignificant x and y changes
 for i in range(len(x_vals)):
     curr_x, curr_y = x_vals[i], y_vals[i]
 
@@ -37,12 +37,20 @@ max_y = max(y_vals)
 
 # Scaling points to be usable in Blender
 scale_mult = 10000
-scale_sub = None
-scale_add = None
 x_filtered = [scale_mult*(x - max_x) for x in x_filtered]
 y_filtered = [scale_mult*(y - max_y) for y in y_filtered]
 x_vals = [scale_mult*(x - max_x) for x in x_vals]
 y_vals = [scale_mult*(y - max_y) for y in y_vals]
+
+
+file = open('lake_data_processed.txt', 'w')
+for x in range(len(x_filtered)):
+    file.write(str(x_filtered[x]))
+    file.write(',')
+    file.write(str(y_filtered[x]))
+    file.write(',')
+    file.write(str(z_filtered[x]))
+    file.write('\n')
 
 plt.plot(x_filtered, y_filtered, label="filtered")
 plt.plot(x_vals, y_vals, label="unfiltered")
