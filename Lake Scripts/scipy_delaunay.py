@@ -1,6 +1,6 @@
-from scipy.spatial import Delaunay, delaunay_plot_2d
+from scipy.spatial import Delaunay, delaunay_plot_2d, Voronoi, voronoi_plot_2d
 import numpy as np
-
+import matplotlib.pyplot as plt
 class Lake_Delaunay:
 
     
@@ -27,6 +27,9 @@ class Lake_Delaunay:
         triangulation = Delaunay(self.all_points[0:, :2])
         tri = triangulation.simplices
         self.faces = [list(face) for face in tri]
+        delaunay_plot_2d(triangulation)
+        plt.title("Delaunay Triangulation on Lake Fred Points")
+        plt.show()
         
     
     def separate_values(self):
@@ -49,5 +52,32 @@ class Lake_Delaunay:
 
 if __name__ == "__main__":
     delaunay = Lake_Delaunay()
-    delaunay.load_data("C:\\Users\\mmowl\\Desktop\\Lake Fred\\Lake Scripts\\Delaunay\\Lake_Fred_CSV_2.csv", ',', 1)
-    delaunay.delaunay_2d()
+    # delaunay.load_data("Lake Scripts\\Lake_Fred_CSV_2.csv", ',', 1)
+    # delaunay.delaunay_2d()
+    # Generate random points for demonstration
+
+    def delaunay_plot_2d_custom(ax, tri):
+        ax.triplot(tri.points[:, 0], tri.points[:, 1], tri.simplices, 'b-')
+
+    def voronoi_plot_2d_custom(ax, vor):
+        voronoi_plot_2d(vor, ax=ax, show_vertices=False, line_colors='orange', line_width=2, line_alpha=0.6, point_size=2)
+
+    # Generate random points for demonstration
+    rng = np.random.default_rng()
+    points = rng.random((50, 2))
+
+    # Perform Delaunay triangulation
+    tri = Delaunay(points)
+
+    # Create a single subplot
+    fig, ax = plt.subplots()
+
+    # Plot Delaunay triangulation
+    delaunay_plot_2d_custom(ax, tri)
+
+    # Overlay Voronoi diagram on the same subplot
+    vor = Voronoi(points)
+    voronoi_plot_2d_custom(ax, vor)
+
+    plt.title("Delaunay Triangulation and Voronoi Diagram")
+    plt.show()

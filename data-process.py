@@ -59,12 +59,12 @@ for x in range(len(x_filtered)):
     file.write(',')
     file.write(str(z_filtered[x]))
     file.write('\n')
-
-plt.plot(x_filtered, y_filtered, label="filtered")
+file.close()
+# plt.plot(x_filtered, y_filtered, label="filtered")
 plt.plot(x_vals, y_vals, label="unfiltered")
 plt.xlabel("X")
 plt.ylabel("Y")
 
-plt.title("Filtered vs. Unfiltered")
+plt.title("Unfiltered")
 plt.legend()
 plt.show()
