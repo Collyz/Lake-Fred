@@ -52,32 +52,35 @@ class Lake_Delaunay:
 
 if __name__ == "__main__":
     delaunay = Lake_Delaunay()
-    # delaunay.load_data("Lake Scripts\\Lake_Fred_CSV_2.csv", ',', 1)
-    # delaunay.delaunay_2d()
-    # Generate random points for demonstration
-
-    def delaunay_plot_2d_custom(ax, tri):
-        ax.triplot(tri.points[:, 0], tri.points[:, 1], tri.simplices, 'b-')
-
-    def voronoi_plot_2d_custom(ax, vor):
-        voronoi_plot_2d(vor, ax=ax, show_vertices=False, line_colors='orange', line_width=2, line_alpha=0.6, point_size=2)
-
-    # Generate random points for demonstration
-    rng = np.random.default_rng()
-    points = rng.random((50, 2))
-
-    # Perform Delaunay triangulation
-    tri = Delaunay(points)
-
-    # Create a single subplot
-    fig, ax = plt.subplots()
-
-    # Plot Delaunay triangulation
-    delaunay_plot_2d_custom(ax, tri)
-
-    # Overlay Voronoi diagram on the same subplot
-    vor = Voronoi(points)
-    voronoi_plot_2d_custom(ax, vor)
-
-    plt.title("Delaunay Triangulation and Voronoi Diagram")
+    delaunay.load_data("C:\\Users\\mmowl\\Desktop\\Lake Fred\\Lake-Fred\\Experimenting With 2D_Delaunay\\lake_data_processed.txt", ',', 1)
+    delaunay.delaunay_2d()
+    plt.plot(delaunay.faces)
     plt.show()
+    # Generate random points for demonstration
+    
+
+    # def delaunay_plot_2d_custom(ax, tri):
+    #     ax.triplot(tri.points[:, 0], tri.points[:, 1], tri.simplices, 'b-')
+
+    # def voronoi_plot_2d_custom(ax, vor):
+    #     voronoi_plot_2d(vor, ax=ax, show_vertices=False, line_colors='orange', line_width=2, line_alpha=0.6, point_size=2)
+
+    # # Generate random points for demonstration
+    # rng = np.random.default_rng()
+    # points = rng.random((50, 2))
+
+    # # Perform Delaunay triangulation
+    # tri = Delaunay(points)
+
+    # # Create a single subplot
+    # fig, ax = plt.subplots()
+
+    # # Plot Delaunay triangulation
+    # delaunay_plot_2d_custom(ax, tri)
+
+    # # Overlay Voronoi diagram on the same subplot
+    # vor = Voronoi(points)
+    # voronoi_plot_2d_custom(ax, vor)
+
+    # plt.title("Delaunay Triangulation and Voronoi Diagram")
+    # plt.show()
