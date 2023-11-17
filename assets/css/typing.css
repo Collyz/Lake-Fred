@@ -1,0 +1,32 @@
+.typing-div{
+    font-family: monospace;
+    display: inline-block;
+}
+
+.type-words{
+    border-right: 2px solid white;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 2.5s steps(8),
+               cursor .4s step-end infinite alternate;
+    animation-fill-mode: forwards;
+}
+
+.type-words::after {
+    content: ""; /* Create a pseudo-element */
+    display: inline-block;
+    text-align: center;
+    width: 0;
+    height: 100%; /* Match the height of the text */
+    border-right: 2px solid transparent; /* Hide the border */
+    caret-color: transparent; /* Hide the cursor */
+}
+
+@keyframes cursor {
+    50%{border-color: transparent}
+}
+
+@keyframes typing{
+    from {width: 0}
+} 

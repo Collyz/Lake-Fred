@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Collyz Website</title>
+    
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script type="module" crossorigin src="./assets/index-ba530a2e.js"></script>
+  <link rel="stylesheet" href="./assets/index-105af262.css">
+</head>
+<body data-bs-theme="light">
+  <!--Scripts-->
+
+
+  <!--Navbar-->
+  <nav id="navbar" class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+    <div class="container-fluid">
+        <!--Main Page Title-->
+        <a class="navbar-brand" href="index.html">Mohammed's Personal Website</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!--The rest of navbar-->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!--Collapsing navigation bar section-->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        Source
+                    </a>
+                    <ul class="dropdown-menu text-center">
+                        <li>
+                            <a class="dropdown-item" aria-current="page" href="https://github.com/Collyz" target="_blank">My GitHub <i class="bi bi-github"></i></a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="https://github.com/Collyz/Personal-Website" target="_blank">Source Code <i class="bi bi-file-code"></i></a>
+                        </li>
+                    </ul>
+                </li>                
+            </ul>
+            <form class="form-check form-switch">
+                <label id="bright-switch-label" for="bright-switch">Light Mode</label>
+                <input class="form-check-input" checked type="checkbox" role="switch" id="bright-switch" onclick="brightness()">
+            </form>
+        </div>
+    </div>
+</nav>
+
+  <!--Headings-->
+  <div id="Info" class="container text-center mt-5 pt-3">
+    <!-- <div class="typing-div">
+      <h1 class="display-1 type-words">Welcome!</h1>
+    </div> -->
+    <h1 class="text-decoration-underline display-1">Interactive Lake Fred!</h1>
+  </div>
+
+  <!--Introduction/About-->
+  <div class="container">
+    <h1 class="text-decoration-underline">About</h1>
+    <p class="fs-5">
+      Lake Fred is a prominent feature of Stockton University. Questions about its true size and depth piqued our curiosity, motivating us to embark on an engaging investigation. Our goal was to accurately measure Lake Fred's dimensions. You can read more about our data collection and mathematical techniques used to measure the lake here: <a href="https://stockton.edu/sciences-math/ezine/fall2023/lake-fred.html" target="_blank">Discovering Lake Fred: A Journey Through Advanced Calculus</a>
+    </p>
+    <h3>Data Processing</h3>
+    <p class="fs-5">
+      Using Python, I retrieved the raw data that was collected in a CSV file. I first removed several non unique x and y values from the data. I then proceeded to scale the data as the distance between two points was incredibly small. This resulted in the the points going from 1771 to 1480 points. This was a removal of 291 points. I then wrote this new data to a new file to be used in the Blender Script that actually creates the model. I did however create several graphs to view changes in the filtered vs non-filtered data.
+    </p>
+    <img class='img-fluid' src="./assets/unfiltered-62cb82f9.png" alt="unfiltered point data">
+    <img class='img-fluid' src="./assets/filtered-1e75f778.png" alt="unfiltered point data">
+    <img class='img-fluid' src="./assets/filtered_vs_unfiltered-75cff6d9.png" alt="filtered vs unfiltered">
+    <br>
+    <br>
+    <h3>Creating the Model: Delaunay Triangulation</h3>
+    <p class="fs-5">
+      The actual triangulation was computed by SciPy's Delaunay Triangulation. Here are the results before the data was put into Blender.
+    </p>
+    <img class='img-fluid' src="./assets/2d_Delaunay_Lake-30fc0a55.png" alt="">
+    <br>
+    <br>
+    <p>
+      Here is the stand-alone triangulation of the lake that the SciPy Delaunay computed. Raising these points in the third dimension is a simple way to create the triangulation in 3D. This is not always the best way to do it, in this case, it just so happened to be a decent solution. 
+    </p>
+    <img class='img-fluid' src="./assets/Delaunay_and_Voronoi-e2903912.png" alt="">
+    <img class='img-fluid' src="./assets/Delaunay_example-aff05e72.png" alt="">
+    <br>
+    <br>
+    <p>
+      The two images above are some experimentations that I performed with the SciPy spatial module. 
+      I generated a random set of points and performed 2D Delaunay on the points in the graph titled 'Example of Delaunay'. 
+      The graph titled 'Delaunay Triangulation and Voronoi Diagram' was my experimentation with the relation between a Delaunay Triangulation(DT) and the Voronoi diagram. The DT corresponds to the dual graph of the Voronoi diagram.
+    </p>
+
+    <h3>3D Printing the Model</h3>
+    <p class="fs-5">
+      Trying to 3D printing the model brought with it numerous issues:
+      <ul>
+        <li>The first being that details are lost due to the limitations of our printers.</li>
+        <li>The model is too thin to remove gently from the printer base</li>
+        <li>When splitting the model in Blender, the slicer does not understand what happened and slices essentially nothing of value from the model</li>
+        <li>Trying to remedy this issue by extrusion in one direction did not prove successful</li>
+        <li>The model would lose detail or break in the opposite direction of the extrusion</li>
+        <li>Trying to print the model face down for the fewest amount of supports proved fruitless and the slicer could not understand the lake model is a bown essentially</li>
+      </ul>
+      <b>The solution came in the form of double extruding the splits of the model. Extruding one object up and the other down for both sides of the split generated STL files that were printable</b>
+      <br>
+      <br>
+      <img class="img-fluid" src="./assets/split-3857978b.png" alt="split image of the lake model in blender">
+    </p>
+    <h3>Browser Rendering the Model Using Three.js</h3>
+    <p class="fs-5">
+      Below is the canvas for the Lake Model that is being rendered into your browser using <a href="https://threejs.org/">Three.js</a> It is a wonderful JavaScript library that mades putting 3D graphics into a browser very simple. The link to the source code can be found in the navigation bar
+    </p>
+    <img class='img-fluid' src="./assets/website-qr-ec73afba.png" alt="qr code to this website used for presentation">
+    <br>
+    <br>
+    <p>QR code this website</p>
+  </div>
+
+  <!--Data Parsing/Modification-->
+  <!--Programming Blender Script-->
+  <!--Three.js-->
+  <!--Controls for interactive Lake Fred-->
+  <div id="controls" class="container text-center my-0">
+    <div class="dropdown text-start">
+      <div class="d-flex align-items-center">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Controls</button>
+        <ul class="dropdown-menu">
+          <li><a id="wireframe_toggle" class="dropdown-item">Toggle Wireframe</a></li>
+          <li><a id="light_toggle" class="dropdown-item" >Toggle Lights</a></li>
+          <li><a id="reset_camera" class="dropdown-item" >Reset Camera</a></li>
+        </ul>
+        <label class="ms-3 me-1">Stop Camera Spin</label>
+        <input  type="checkbox" name="spin" id="cam_spin">
+      </div>
+      
+      
+      <canvas id="scene" class="my-3"></canvas>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  
+  <script src="./assets/js/misc.js"></script>
+  </body>
+</html> 
