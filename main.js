@@ -19,7 +19,7 @@ renderer.setSize( window.innerWidth / resize_scale, window.innerHeight / resize_
 // Camera pos
 camera.position.set(0, 30, 130);
 // Scene background
-scene.background = new THREE.Color(0x26453E);
+scene.background = new THREE.Color(0x91B491);
 
 
 // GLTF (Lake Model) import and creation
