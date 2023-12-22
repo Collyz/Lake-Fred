@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Lake Fred Website</title>
+    <title>Lake Fred - Mohammed Mowla</title>
     
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <script type="module" crossorigin src="./assets/index-ba530a2e.js"></script>
+  <script type="module" crossorigin src="./assets/index-2d86397a.js"></script>
   <link rel="stylesheet" href="./assets/index-105af262.css">
 </head>
 <body data-bs-theme="light">
@@ -18,7 +18,7 @@
   <nav id="navbar" class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
     <div class="container-fluid">
         <!--Main Page Title-->
-        <a class="navbar-brand" href="index.html">Interactive Lake Fred</a>
+        <a class="navbar-brand" href="index.html">Lake Fred - Mohammed M</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -42,7 +42,7 @@
             </ul>
             <form class="form-check form-switch">
                 <label id="bright-switch-label" for="bright-switch">Light Mode</label>
-                <input class="form-check-input" checked type="checkbox" role="switch" id="bright-switch" onclick="brightness()">
+                <input class="form-check-input" type="checkbox" role="switch" id="bright-switch" onclick="brightness()">
             </form>
         </div>
     </div>
@@ -50,9 +50,6 @@
 
   <!--Headings-->
   <div id="Info" class="container text-center mt-5 pt-3">
-    <!-- <div class="typing-div">
-      <h1 class="display-1 type-words">Welcome!</h1>
-    </div> -->
     <h1 class="text-decoration-underline display-1">Interactive Lake Fred!</h1>
   </div>
 
@@ -64,7 +61,7 @@
     </p>
     <h3>Data Processing</h3>
     <p class="fs-5">
-      Using Python, I retrieved the raw data that was collected in a CSV file. I first removed several non unique x and y values from the data. I then proceeded to scale the data as the distance between two points was incredibly small. This resulted in the the points going from 1771 to 1480 points. This was a removal of 291 points. I then wrote this new data to a new file to be used in the Blender Script that actually creates the model. I did however create several graphs to view changes in the filtered vs non-filtered data.
+      Using Python, I retrieved the raw data that was collected in a CSV file. I first removed several non_unique x and y values from the data. I then proceeded to scale the data as the distance between two points was incredibly small. This resulted in the the points going from 1771 to 1480 points. This was a removal of 291 points. I then wrote this new data to a new file to be used in the Blender Script that actually creates the model. I did however create several graphs to view changes in the filtered vs non-filtered data.
     </p>
     <img class='img-fluid' src="./assets/unfiltered-62cb82f9.png" alt="unfiltered point data">
     <img class='img-fluid' src="./assets/filtered-1e75f778.png" alt="unfiltered point data">
@@ -111,6 +108,10 @@
     <p class="fs-5">
       Below is the canvas for the Lake Model that is being rendered into your browser using <a href="https://threejs.org/">Three.js</a> It is a wonderful JavaScript library that mades putting 3D graphics into a browser very simple. The link to the source code can be found in the navigation bar
     </p>
+    <img class='img-fluid' src="./assets/website-qr-ec73afba.png" alt="qr code to this website used for presentation">
+    <br>
+    <br>
+    <p>QR code for this website</p>
   </div>
 
   <!--Data Parsing/Modification-->
@@ -134,10 +135,6 @@
       
       <canvas id="scene" class="my-3"></canvas>
     </div>
-    <img class='img-fluid' src="./assets/website-qr-ec73afba.png" alt="qr code to this website used for presentation">
-    <br>
-    <br>
-    <p>QR code for this website</p>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
